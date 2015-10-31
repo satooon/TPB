@@ -10,6 +10,8 @@ public class Character : Photon.MonoBehaviour {
 	public Camera MainCamera;
 	public UnityChan.UnityChanControlScriptWithRgidBody UnityChan;
 
+	private GameObject goBomb;
+
 	// Use this for initialization
 	void Start () {
 		this.MainCamera.enabled = this.photonView.isMine;
@@ -24,6 +26,33 @@ public class Character : Photon.MonoBehaviour {
 		if (this.photonView.isMine) {
 			this.UnityChan.FixedUpdateMine();
 		}
+	}
+
+	public void BombOutput() {
+		this.goBomb = Bomb.Type.Nomal.CreatePhotonInstance (Vector3.zero);
+		this.goBomb.transform.parent = this.transform;
+		this.goBomb.transform.localScale = new Vector3 (20f, 20f, 20f);
+		this.goBomb.transform.localPosition = new Vector3(0.5f, 0.5f, 0f);
+	}
+
+	public void BombShoot() {
+		if (this.goBomb == null) {
+			return;
+		}
+
+		Vector3 center = new Vector3 (Screen.width / 2, Screen.height / 2, 0f);
+		center.z += 25f; 
+		center.x += 3f;
+		Vector3 pos = Camera.main.ScreenToWorldPoint (center);
+        
+        this.goBomb.transform.parent = this.transform.parent;
+		this.goBomb.transform.localPosition = pos;
+		StartCoroutine (this.bombExplosion(this.goBomb));
+	}
+
+	private IEnumerator bombExplosion(GameObject bomb) {
+		yield return new WaitForSeconds (2f);
+		bomb.GetComponent<Bomb> ().BombExplosion ();
 	}
 }
 
@@ -54,7 +83,7 @@ public static class CharacterPlayerExtension {
 	public static GameObject CreatePhotonInstance(this Character.Player value) {
 		Vector3 pos = new Vector3(
 			Random.Range(-36f, 36f), 
-			Random.Range(0f, 00f),
+			Random.Range(10f, 50f),
 			Random.Range(0f, 70f)
 		);
 		return value.CreatePhotonInstance (pos);

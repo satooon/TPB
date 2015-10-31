@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BattleController : NetworkManager {
 
+	private Character currentCharacter;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -30,6 +32,18 @@ public class BattleController : NetworkManager {
 		base.OnJoinedRoom ();
 
 		//プレイヤーをインスタンス化
-		Character.Player.Unitychan.CreatePhotonInstance ();
+		this.currentCharacter = Character.Player.Unitychan.CreatePhotonInstance ().GetComponent<Character>();
+	}
+
+	public void PushDown() {
+		Debug.Log ("PushDown");
+
+		this.currentCharacter.BombOutput ();
+	}
+	
+	public void PushUp() {
+		Debug.Log ("PushUp");
+
+		this.currentCharacter.BombShoot ();
 	}
 }

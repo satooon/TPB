@@ -1179,7 +1179,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 623522505}
           m_MethodName: PushUp
           m_Mode: 1
           m_Arguments:
@@ -1196,7 +1196,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 623522505}
           m_MethodName: PushDown
           m_Mode: 1
           m_Arguments:
