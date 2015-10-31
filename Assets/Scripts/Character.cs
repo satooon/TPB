@@ -44,9 +44,9 @@ public static class CharacterPlayerExtension {
 
 	public static GameObject CreatePhotonInstance(this Character.Player value) {
 		Vector3 pos = new Vector3(
-			Random.Range(100f -0.5f, 200f + 0.5f), 
+			Random.Range(-36f, 36f), 
 			Random.Range(2f, 50f),
-			Random.Range(100f - 0.5f, 200f + 0.50f)
+			Random.Range(0f, 70f)
 		);
 		return value.CreatePhotonInstance (pos);
 	}
