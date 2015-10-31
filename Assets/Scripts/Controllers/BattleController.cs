@@ -17,7 +17,7 @@ public class BattleController : NetworkManager {
 	void OnJoinedLobby() {
 		base.OnJoinedLobby ();
 
-		PhotonNetwork.CreateRoom (null);
+		NetworkManager.JoinOrCreateRoom ();
 	}
 	
 	// Room参加NG時

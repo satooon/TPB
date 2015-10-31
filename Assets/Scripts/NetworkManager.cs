@@ -11,7 +11,14 @@ public class NetworkManager : Photon.MonoBehaviour {
 	// GUI表示
 	void OnGUI() {
 		// Photon接続状態
-		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+		GUILayout.Label ("ConnectionStatus:" + PhotonNetwork.connectionStateDetailed.ToString());
+		if (PhotonNetwork.inRoom) {
+			GUILayout.Label ("RoomName:" + PhotonNetwork.room.name);
+		}
+	}
+
+	public static void JoinOrCreateRoom () {
+		PhotonNetwork.JoinOrCreateRoom ("test", new RoomOptions(){ isOpen = true, isVisible = true }, null);
 	}
 	
 	// Lobby参加OK時

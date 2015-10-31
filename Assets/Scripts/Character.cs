@@ -1,20 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour {
+public class Character : Photon.MonoBehaviour {
 
 	public enum Player {
 		Unitychan,
 	}
 
+	public Camera MainCamera;
+	public UnityChan.UnityChanControlScriptWithRgidBody UnityChan;
+
 	// Use this for initialization
 	void Start () {
-	
+		this.MainCamera.enabled = this.photonView.isMine;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void FixedUpdate() {
+		if (this.photonView.isMine) {
+			this.UnityChan.FixedUpdateMine();
+		}
 	}
 }
 
@@ -45,7 +54,7 @@ public static class CharacterPlayerExtension {
 	public static GameObject CreatePhotonInstance(this Character.Player value) {
 		Vector3 pos = new Vector3(
 			Random.Range(-36f, 36f), 
-			Random.Range(2f, 50f),
+			Random.Range(5f, 50f),
 			Random.Range(0f, 70f)
 		);
 		return value.CreatePhotonInstance (pos);
