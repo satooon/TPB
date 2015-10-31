@@ -29,4 +29,8 @@ public static class CommonSceneExtension {
 		return CommonSceneExtension.sceneName[value.GetIntValue()];
 	}
 
+	public static float GetFadeDuration(this Common.Scene value) {
+		return 0.5f;
+	}
+
 }

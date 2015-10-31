@@ -14,6 +14,7 @@ public class TitleController : MonoBehaviour {
 	}
 
 	public void OnTouch() {
-		Application.LoadLevel (Common.Scene.Battle.GetSceneName());
+//		FadeManager.Instance.LoadLevel (Common.Scene.CharacterSelect.GetSceneName(), Common.Scene.CharacterSelect.GetFadeDuration());
+		FadeManager.Instance.LoadLevel (Common.Scene.Battle.GetSceneName(), Common.Scene.Battle.GetFadeDuration());
 	}
 }
