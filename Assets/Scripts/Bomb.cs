@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Bomb : Photon.MonoBehaviour {
@@ -6,6 +7,8 @@ public class Bomb : Photon.MonoBehaviour {
 	public enum Type {
 		Nomal,
 	}
+
+	public static string TagName = "BombExplosion";
 
 	public GameObject GoBomb;
 	public GameObject GoExplosion;
@@ -21,14 +24,19 @@ public class Bomb : Photon.MonoBehaviour {
 	
 	}
 
-	void OnGUI() {
-		GUILayout.Label ("Bomb x:" + this.transform.localPosition.x);
-		GUILayout.Label ("Bomb y:" + this.transform.localPosition.y);
-		GUILayout.Label ("Bomb z:" + this.transform.localPosition.z);
-	}
-
-	public void BombExplosion() {
+//	void OnGUI() {
+//		GUILayout.Label ("Bomb x:" + this.transform.localPosition.x);
+//		GUILayout.Label ("Bomb y:" + this.transform.localPosition.y);
+//		GUILayout.Label ("Bomb z:" + this.transform.localPosition.z);
+//	}
+    
+    public IEnumerator BombExplosion(Action callBack) {
+		yield return new WaitForSeconds (2f);
+		this.tag = Bomb.TagName;
 		this.Animator.Play ("BombExplosion");
+		if (callBack != null) {
+			callBack();
+		}
 	}
 
 //	public void BombShoot() {

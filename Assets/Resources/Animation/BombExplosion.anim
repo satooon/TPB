@@ -19,18 +19,18 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: {x: .5, y: .5, z: .5}
-        inSlope: {x: 21, y: 21, z: 21}
-        outSlope: {x: 21, y: 21, z: 21}
+        inSlope: {x: 33, y: 33, z: 33}
+        outSlope: {x: 33, y: 33, z: 33}
         tangentMode: 0
       - time: .166666672
-        value: {x: 4, y: 4, z: 4}
-        inSlope: {x: 22.5, y: 22.5, z: 22.5}
-        outSlope: {x: 22.5, y: 22.5, z: 22.5}
-        tangentMode: 0
-      - time: .25
         value: {x: 6, y: 6, z: 6}
-        inSlope: {x: 24.0000019, y: 24.0000019, z: 24.0000019}
-        outSlope: {x: 24.0000019, y: 24.0000019, z: 24.0000019}
+        inSlope: {x: 26.5, y: 26.5, z: 26.5}
+        outSlope: {x: 26.5, y: 26.5, z: 26.5}
+        tangentMode: 0
+      - time: .266666681
+        value: {x: 8, y: 8, z: 8}
+        inSlope: {x: 19.9999981, y: 19.9999981, z: 19.9999981}
+        outSlope: {x: 19.9999981, y: 19.9999981, z: 19.9999981}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -93,19 +93,33 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_IsActive
+    path: GoBomb/pCube1
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
         value: .5
-        inSlope: 21
-        outSlope: 21
+        inSlope: 33
+        outSlope: 33
         tangentMode: 10
       - time: .166666672
-        value: 4
-        inSlope: 22.5
-        outSlope: 22.5
-        tangentMode: 10
-      - time: .25
         value: 6
-        inSlope: 24.0000019
-        outSlope: 24.0000019
+        inSlope: 26.5
+        outSlope: 26.5
+        tangentMode: 10
+      - time: .266666681
+        value: 8
+        inSlope: 19.9999981
+        outSlope: 19.9999981
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -118,18 +132,18 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: .5
-        inSlope: 21
-        outSlope: 21
+        inSlope: 33
+        outSlope: 33
         tangentMode: 10
       - time: .166666672
-        value: 4
-        inSlope: 22.5
-        outSlope: 22.5
-        tangentMode: 10
-      - time: .25
         value: 6
-        inSlope: 24.0000019
-        outSlope: 24.0000019
+        inSlope: 26.5
+        outSlope: 26.5
+        tangentMode: 10
+      - time: .266666681
+        value: 8
+        inSlope: 19.9999981
+        outSlope: 19.9999981
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -142,38 +156,24 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: .5
-        inSlope: 21
-        outSlope: 21
+        inSlope: 33
+        outSlope: 33
         tangentMode: 10
       - time: .166666672
-        value: 4
-        inSlope: 22.5
-        outSlope: 22.5
-        tangentMode: 10
-      - time: .25
         value: 6
-        inSlope: 24.0000019
-        outSlope: 24.0000019
+        inSlope: 26.5
+        outSlope: 26.5
+        tangentMode: 10
+      - time: .266666681
+        value: 8
+        inSlope: 19.9999981
+        outSlope: 19.9999981
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.z
     path: GoBomb/GoExplosion
     classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_IsActive
-    path: GoBomb/pCube1
-    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 444928}
+  - 136: {fileID: 13632558}
   m_Layer: 0
   m_Name: Mesh_SD_unitychan
   m_TagString: Untagged
@@ -1799,6 +1800,7 @@ GameObject:
   - 114: {fileID: 11417544}
   - 114: {fileID: 11483490}
   - 114: {fileID: 11417726}
+  - 33: {fileID: 3326154}
   m_Layer: 0
   m_Name: PrefabUnitychan
   m_TagString: Untagged
@@ -3860,6 +3862,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!33 &3326154
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189254}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3351420
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3874,7 +3883,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189254}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 40
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -4000,22 +4009,22 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Speed
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Direction
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Jump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Rest
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: JumpHeight
   - Type: 1
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: GravityControl
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -4189,6 +4198,19 @@ CapsuleCollider:
   m_Height: 1.10000002
   m_Direction: 1
   m_Center: {x: 0, y: .5, z: 0}
+--- !u!136 &13632558
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: .49000001, z: 0}
 --- !u!137 &13704420
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -4514,6 +4536,42 @@ Prefab:
       propertyPath: UnityChan
       value: 
       objectReference: {fileID: 11469288}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[2].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[4].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[5].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 189254}

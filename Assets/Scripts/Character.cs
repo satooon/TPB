@@ -6,15 +6,18 @@ public class Character : Photon.MonoBehaviour {
 	public enum Player {
 		Unitychan,
 	}
+	public static int BombCountMax = 3;
 
 	public Camera MainCamera;
 	public UnityChan.UnityChanControlScriptWithRgidBody UnityChan;
 
 	private GameObject goBomb;
+	private int bombCount;
 
 	// Use this for initialization
 	void Start () {
 		this.MainCamera.enabled = this.photonView.isMine;
+		this.bombCount = Character.BombCountMax;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +31,18 @@ public class Character : Photon.MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.CompareTag(Bomb.TagName)) {
+			Debug.Log("Dead");
+		}
+	}
+
 	public void BombOutput() {
+		if (this.bombCount <= 0) {
+			return;
+		}
+		this.bombCount--;
+
 		this.goBomb = Bomb.Type.Nomal.CreatePhotonInstance (Vector3.zero);
 		this.goBomb.transform.parent = this.transform;
 		this.goBomb.transform.localScale = new Vector3 (20f, 20f, 20f);
@@ -39,20 +53,19 @@ public class Character : Photon.MonoBehaviour {
 		if (this.goBomb == null) {
 			return;
 		}
+		GameObject go = this.goBomb;
+		this.goBomb = null;
 
 		Vector3 center = new Vector3 (Screen.width / 2, Screen.height / 2, 0f);
 		center.z += 25f; 
 		center.x += 3f;
 		Vector3 pos = Camera.main.ScreenToWorldPoint (center);
         
-        this.goBomb.transform.parent = this.transform.parent;
-		this.goBomb.transform.localPosition = pos;
-		StartCoroutine (this.bombExplosion(this.goBomb));
-	}
-
-	private IEnumerator bombExplosion(GameObject bomb) {
-		yield return new WaitForSeconds (2f);
-		bomb.GetComponent<Bomb> ().BombExplosion ();
+		go.transform.parent = this.transform.parent;
+		go.transform.localPosition = pos;
+		StartCoroutine (go.GetComponent<Bomb>().BombExplosion(() => {
+			this.bombCount++;
+		}));
 	}
 }
 
@@ -83,7 +96,7 @@ public static class CharacterPlayerExtension {
 	public static GameObject CreatePhotonInstance(this Character.Player value) {
 		Vector3 pos = new Vector3(
 			Random.Range(-36f, 36f), 
-			Random.Range(10f, 50f),
+			15f,
 			Random.Range(0f, 70f)
 		);
 		return value.CreatePhotonInstance (pos);
