@@ -3934,6 +3934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 2077414}
   UnityChan: {fileID: 11469288}
+  CapsuleCollider: {fileID: 13626362}
+  TextPoint: {fileID: 0}
+  TextName: {fileID: 0}
 --- !u!114 &11417544
 MonoBehaviour:
   m_ObjectHideFlags: 1

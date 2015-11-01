@@ -13,6 +13,7 @@ public class Bomb : Photon.MonoBehaviour {
 	public GameObject GoBomb;
 	public GameObject GoExplosion;
 	public Animator Animator;
+	public Character Character { get; set; }
 
 	// Use this for initialization
 	void Start () {
@@ -64,7 +65,7 @@ public class Bomb : Photon.MonoBehaviour {
 //
 	public void OnBombExplosionComplete() {
 		Debug.Log ("OnBombExplosionComplete");
-		Destroy (this.gameObject);
+		PhotonNetwork.Destroy (this.gameObject);
 	}
 }
 

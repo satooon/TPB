@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Character : Photon.MonoBehaviour {
@@ -7,9 +8,28 @@ public class Character : Photon.MonoBehaviour {
 		Unitychan,
 	}
 	public static int BombCountMax = 3;
+	public static int PointMax = 10;
 
 	public Camera MainCamera;
 	public UnityChan.UnityChanControlScriptWithRgidBody UnityChan;
+	public CapsuleCollider CapsuleCollider;
+	public Text TextPoint { get { return this.BattleController.TextPoint; } }
+	public Text TextName { get { return this.BattleController.TextName; } }
+
+	private int point;
+	public int Point {
+		get {
+			return this.point;
+		}
+		set {
+			this.point = value;
+			if (this.photonView.isMine) {
+				this.TextPoint.text = this.point + " / " + Character.PointMax;
+			}
+		}
+	}
+
+	public BattleController BattleController{ get; set; }
 
 	private GameObject goBomb;
 	private int bombCount;
@@ -18,6 +38,7 @@ public class Character : Photon.MonoBehaviour {
 	void Start () {
 		this.MainCamera.enabled = this.photonView.isMine;
 		this.bombCount = Character.BombCountMax;
+		this.TextName.text = PhotonNetwork.player.name;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +55,15 @@ public class Character : Photon.MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag(Bomb.TagName)) {
 			Debug.Log("Dead");
+			StartCoroutine(this.invisible());
+			collision.gameObject.GetComponent<Bomb>().Character.AddPoint(1);
+			this.AddPoint(-1);
 		}
+	}
+
+	private IEnumerator invisible() {
+		this.CapsuleCollider.isTrigger = true;
+		yield return new WaitForSeconds (2.0f);
 	}
 
 	public void BombOutput() {
@@ -44,6 +73,7 @@ public class Character : Photon.MonoBehaviour {
 		this.bombCount--;
 
 		this.goBomb = Bomb.Type.Nomal.CreatePhotonInstance (Vector3.zero);
+		this.goBomb.gameObject.GetComponent<Bomb> ().Character = this;
 		this.goBomb.transform.parent = this.transform;
 		this.goBomb.transform.localScale = new Vector3 (20f, 20f, 20f);
 		this.goBomb.transform.localPosition = new Vector3(0.5f, 0.5f, 0f);
@@ -61,11 +91,20 @@ public class Character : Photon.MonoBehaviour {
 		center.x += 3f;
 		Vector3 pos = Camera.main.ScreenToWorldPoint (center);
         
+		pos.z -= 5f;
+		pos.x += 5f;
+		pos.y -= 3f;
+
 		go.transform.parent = this.transform.parent;
 		go.transform.localPosition = pos;
 		StartCoroutine (go.GetComponent<Bomb>().BombExplosion(() => {
 			this.bombCount++;
 		}));
+	}
+
+	public Character AddPoint(int p) {
+		this.Point += p;
+		return this;
 	}
 }
 

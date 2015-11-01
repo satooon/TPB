@@ -4,6 +4,9 @@ using System.Collections;
 public class NetworkManager : Photon.MonoBehaviour {
 	
 	void Awake() {
+		if (PhotonNetwork.insideLobby || PhotonNetwork.inRoom) {
+			return;
+		}
 		// Server接続
 		PhotonNetwork.ConnectUsingSettings("v0.1");
 	}
