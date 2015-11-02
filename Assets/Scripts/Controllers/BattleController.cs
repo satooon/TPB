@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class BattleController : NetworkManager {
 
-	public static int TimerLimit = 5;
+	public static int TimerLimit = 60;
 
 	public Text TextPoint;
 	public Text TextName;
